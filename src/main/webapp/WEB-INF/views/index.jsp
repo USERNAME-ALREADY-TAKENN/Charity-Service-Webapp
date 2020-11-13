@@ -96,35 +96,24 @@
 
     <!-- SLIDE 1 -->
     <div class="help--slides active" data-id="1">
-        <p>W naszej bazie znajdziesz listę zweryfikowanych Fundacji, z którymi współpracujemy.
-            Możesz sprawdzić czym się zajmują.</p>
-
         <ul class="help--slides-items">
             <li>
-                <div class="col">
-                    <div class="title">Fundacja "Dbam o Zdrowie"</div>
-                    <div class="subtitle">Cel i misja: Pomoc dzieciom z ubogich rodzin.</div>
-                </div>
+                <c:forEach items="${institutionList}" var="institution" varStatus="s">
+                    <div class="col<c:if test="${s.last}"> last-institution</c:if>">
+                        <div class="title">Fundacja "${institution.name}"</div>
+                        <div class="subtitle">Cel i misja: ${institution.description}</div>
+                    </div>
 
-                <div class="col">
-                    <div class="title">Fundacja "A kogo"</div>
-                    <div class="subtitle">Cel i misja: Pomoc wybudzaniu dzieci ze śpiączki.</div>
-                </div>
+                     <c:if test="${(s.index + 1) % 2 == 0}">
+                        </li>
+                        <li>
+                    </c:if>
+                </c:forEach>
             </li>
-
-            <li>
-                <div class="col">
-                    <div class="title">Fundacja “Dla dzieci"</div>
-                    <div class="subtitle">Cel i misja: Pomoc osobom znajdującym się w trudnej sytuacji życiowej.</div>
-                </div>
-                <div class="col">
-                    <div class="title">Fundacja “Bez domu”</div>
-                    <div class="subtitle">Cel i misja: Pomoc dla osób nie posiadających miejsca zamieszkania</div>
-                </div>
-
-            </li>
-
         </ul>
+
+        <p>W naszej bazie znajdziesz listę zweryfikowanych Fundacji, z którymi współpracujemy.
+            Możesz sprawdzić czym się zajmują.</p>
     </div>
 
 </section>

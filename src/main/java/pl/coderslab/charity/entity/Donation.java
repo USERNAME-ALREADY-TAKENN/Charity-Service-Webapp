@@ -8,8 +8,6 @@ import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 
 @Entity
@@ -27,7 +25,7 @@ public class Donation {
     private Integer quantity;
 
     @NotEmpty
-    @OneToMany(mappedBy = "donation")
+    @OneToMany//(mappedBy = "donation")
     private List<Category> categories;
 
     @NotEmpty
