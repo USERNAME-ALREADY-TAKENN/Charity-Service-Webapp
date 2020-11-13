@@ -28,8 +28,12 @@ public class HomeController {
         List<Institution> institutionList = this.institutionService.findAll();
         model.addAttribute("institutionList", institutionList);
 
-        long numOfDonations = this.donationService.countAllItems();
+        long numOfGiftedItems = this.donationService.countAllGiftedItems();
+        model.addAttribute("numOfGiftedItems", numOfGiftedItems);
+
+        long numOfDonations = this.donationService.countAllDonations();
         model.addAttribute("numOfDonations", numOfDonations);
+
         return "index";
     }
 }

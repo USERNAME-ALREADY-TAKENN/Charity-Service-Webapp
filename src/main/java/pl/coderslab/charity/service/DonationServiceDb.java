@@ -14,7 +14,12 @@ public class DonationServiceDb implements DonationService {
     }
 
     @Override
-    public long countAllItems() {
+    public long countAllGiftedItems() {
         return this.donationRepository.sumQuantity();
+    }
+
+    @Override
+    public long countAllDonations() {
+        return this.donationRepository.count();
     }
 }
