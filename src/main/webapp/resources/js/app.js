@@ -164,6 +164,17 @@ document.addEventListener("DOMContentLoaded", function() {
       this.$step.parentElement.hidden = this.currentStep >= 5;
 
       // TODO: get data from inputs and show them in summary
+      document.getElementById("quantityFinal").innerText = document.getElementById("quantity").value;
+      document.getElementById("streetFinal").innerText = document.getElementById("street").value;
+      document.getElementById("zipCodeFinal").innerText = document.getElementById("zipCode").value;
+      document.getElementById("cityFinal").innerText = document.getElementById("city").value;
+      document.getElementById("pickUpDateFinal").innerText = document.getElementById("pickUpDate").value;
+      document.getElementById("pickUpTimeFinal").innerText = document.getElementById("pickUpTime").value;
+      document.getElementById("pickUpCommentFinal").innerText = document.getElementById("pickUpComment").value;
+      document.getElementById("institutionFinal").innerText = document.querySelector('input[name="institution"]:checked').nextElementSibling.nextElementSibling.children[0].innerText;
+      document.getElementById("categoryFinal").innerText = Array.from(document.querySelectorAll('input[name="categories"]:checked')).map(el => {return el.nextElementSibling.nextElementSibling.innerText;}).join(", ")
+
+
     }
 
   }
