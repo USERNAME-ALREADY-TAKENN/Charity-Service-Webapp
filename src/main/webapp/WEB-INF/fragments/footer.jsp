@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <footer>
-    <div class="contact">
+    <div class="contact" id="contact">
         <h2>Skontaktuj się z nami</h2>
         <h3>Formularz kontaktowy</h3>
         <form class="form--contact">
@@ -22,6 +22,6 @@
     </div>
 </footer>
 
-<script src="${pageContext.request.contextPath}resources/js/app.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/app.js"></script>
 </body>
 </html>

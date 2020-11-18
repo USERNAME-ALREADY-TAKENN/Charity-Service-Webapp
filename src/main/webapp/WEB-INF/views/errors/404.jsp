@@ -1,16 +1,14 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: wojtek
-  Date: 16.11.2020
-  Time: 17:48
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-  <head>
-    <title>$Title$</title>
-  </head>
-  <body>
-  $END$
-  </body>
-</html>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<jsp:include page="/WEB-INF/fragments/header.jsp" />
+<div class="slogan container container--90">
+    <div class="slogan--item">
+        <h1>
+            Nie znaleziono strony!<br>
+            404
+        </h1>
+    </div>
+</div>
+</header>
+
+<jsp:include page="/WEB-INF/fragments/footer.jsp" />
