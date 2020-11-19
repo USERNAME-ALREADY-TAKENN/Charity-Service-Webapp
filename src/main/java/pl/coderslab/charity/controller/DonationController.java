@@ -36,13 +36,13 @@ public class DonationController {
     public String addDonation(Model model) {
         Donation donation = new Donation();
         model.addAttribute(donation);
-        return "donation";
+        return "donation/form";
     }
 
     @PostMapping("/save")
     public String saveDonation(Model model, @Valid Donation donation, BindingResult validation) {
         if(validation.hasErrors()) {
-            return "donation";
+            return "donation/form";
         }
         this.donationService.save(donation);
         return "donation/saved";

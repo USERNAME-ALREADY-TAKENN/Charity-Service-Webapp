@@ -69,13 +69,6 @@
                         </label>
                     </div>
                 </c:forEach>
-<%--                <div class="form-group form-group--checkbox">--%>
-<%--                    <label>--%>
-<%--                        <input type="checkbox" name="categories" value="clothes-to-use">--%>
-<%--                        <span class="checkbox"></span>--%>
-<%--                        <span class="description">ubrania, które nadają się do ponownego użycia</span>--%>
-<%--                    </label>--%>
-<%--                </div>--%>
 
                 <div class="form-group form-group--buttons">
                     <button type="button" class="btn next-step">Dalej</button>
@@ -90,7 +83,6 @@
                     <label>
                         Liczba 60l worków:
                         <form:input type="number" path="quantity" step="1" min="1" />
-<%--                        <input type="number" name="bags" step="1" min="1">--%>
                     </label>
                 </div>
 
@@ -151,11 +143,6 @@
                             </label>
                         </div>
 
-<%--                        <div class="form-group form-group--inline">--%>
-<%--                            <label>--%>
-<%--                                Numer telefonu <input type="phone" name="phone">--%>
-<%--                            </label>--%>
-<%--                        </div>--%>
                     </div>
 
                     <div class="form-section--column">
@@ -213,7 +200,6 @@
                                 <li id="streetFinal"></li>
                                 <li id="cityFinal"></li>
                                 <li id="zipCodeFinal"</li>
-<%--                                <li>123 456 789</li>--%>
                             </ul>
                         </div>
 
