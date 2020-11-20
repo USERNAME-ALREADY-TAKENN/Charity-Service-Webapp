@@ -183,7 +183,7 @@
                         <ul>
                             <li>
                                 <span class="icon icon-bag"></span>
-                                <span class="summary--text"><span id="quantityFinal"></span> worki <span id="categoryFinal"></span></span>
+                                <span class="summary--text"><span id="quantityFinal"></span> worki z: <span id="categoryFinal"></span></span>
                             </li>
 
                             <li>
@@ -199,7 +199,7 @@
                             <ul>
                                 <li id="streetFinal"></li>
                                 <li id="cityFinal"></li>
-                                <li id="zipCodeFinal"</li>
+                                <li id="zipCodeFinal"></li>
                             </ul>
                         </div>
 

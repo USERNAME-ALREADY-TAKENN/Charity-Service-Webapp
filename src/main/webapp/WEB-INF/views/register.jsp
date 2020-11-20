@@ -6,12 +6,18 @@
 
 <section class="login-page">
     <h2>Załóż konto</h2>
-    <form:form modelAttribute="user" action="/login" method="post">
+    <form:form modelAttribute="user" action="/register" method="post">
+        <div class="form-group">
+            <form:input path="username" placeholder="Name" />
+            <form:errors path="username" />
+        </div>
         <div class="form-group">
             <form:input path="email" type="email" placeholder="Email" />
+            <form:errors path="email" />
         </div>
         <div class="form-group">
             <form:password path="password" placeholder="Hasło" />
+            <form:errors path="password" />
         </div>
         <div class="form-group">
             <input type="password" name="password2" placeholder="Powtórz hasło">
