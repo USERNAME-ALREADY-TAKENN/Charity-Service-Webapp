@@ -41,11 +41,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-            .antMatchers("/").permitAll()
-            .antMatchers("/login").permitAll()
-            .antMatchers("/register").permitAll()
-            .antMatchers("/admin","/admin/**").hasAuthority("ADMIN").anyRequest()
-            .authenticated().and().csrf().disable().formLogin()
+                .antMatchers("/admin","/admin/**").hasAuthority("ADMIN")
+                .antMatchers("/donation","/donation/**", "/profile").hasAuthority("USER")
+                .antMatchers("/**").permitAll()
+                .anyRequest()
+                .authenticated().and().csrf().disable().formLogin()
             .loginPage("/login").failureUrl("/login?error=true")
             .defaultSuccessUrl("/")
             .usernameParameter("username")

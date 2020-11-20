@@ -1,6 +1,7 @@
 package pl.coderslab.charity.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,6 +13,7 @@ import pl.coderslab.charity.entity.Category;
 import pl.coderslab.charity.entity.Donation;
 import pl.coderslab.charity.entity.Institution;
 import pl.coderslab.charity.service.CategoryService;
+import pl.coderslab.charity.service.CurrentUser;
 import pl.coderslab.charity.service.DonationService;
 import pl.coderslab.charity.service.InstitutionService;
 
@@ -40,10 +42,11 @@ public class DonationController {
     }
 
     @PostMapping("/save")
-    public String saveDonation(Model model, @Valid Donation donation, BindingResult validation) {
+    public String saveDonation(Model model, @Valid Donation donation, BindingResult validation, @AuthenticationPrincipal CurrentUser currentUser) {
         if(validation.hasErrors()) {
             return "donation/form";
         }
+        donation.setUser(currentUser.getUser());
         this.donationService.save(donation);
         return "donation/saved";
     }

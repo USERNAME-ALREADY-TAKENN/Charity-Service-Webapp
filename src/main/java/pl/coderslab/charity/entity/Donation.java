@@ -9,6 +9,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -25,8 +26,8 @@ public class Donation {
     private Integer quantity;
 
     @NotEmpty
-    @OneToMany//(mappedBy = "donation")
-    private List<Category> categories;
+    @ManyToMany
+    private List<Category> categories = new ArrayList<>();;
 
 //    @NotEmpty
     @ManyToOne
@@ -50,4 +51,20 @@ public class Donation {
 
     private String pickUpComment;
 
+    @ManyToOne
+    User user;
+
+    @Override
+    public String toString() {
+        return "Donation{" +
+                "id=" + id +
+                ", quantity=" + quantity +
+                ", street='" + street + '\'' +
+                ", city='" + city + '\'' +
+                ", zipCode='" + zipCode + '\'' +
+                ", pickUpDate=" + pickUpDate +
+                ", pickUpTime='" + pickUpTime + '\'' +
+                ", pickUpComment='" + pickUpComment + '\'' +
+                '}';
+    }
 }
