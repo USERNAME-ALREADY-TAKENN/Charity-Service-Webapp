@@ -6,7 +6,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Setter
@@ -21,4 +22,15 @@ public class Category {
     @NotBlank
     @Column(nullable = false)
     private String name;
+
+    @ManyToMany(mappedBy = "categories")
+    List<Donation> donations = new ArrayList<>();
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }
