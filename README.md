@@ -1,8 +1,20 @@
-# Portfolio-Lab-Charity
+# Charity Donation Service
 
-Charity service website, allowing registering planned donations to chosen institutions.  
+Charity service website, allows adding planned donations to chosen institutions by users.  
 
-In this project I used given frontend template and implemented backend based on Java Spring Boot with Spring Security, JpaRepository, users, roles and JSP pages.
+In this project I used frontend template and implemented Java backend.
+
+Features:
+- registering accounts
+- adding planned donations
+- manging users and donations
+
+Used technologies:
+- Hibernate
+- Spring Boot
+- Spring Security
+- JpaRepository
+- JSP pages
 
 ![opera_2020-11-21_01-10-42](https://user-images.githubusercontent.com/50807860/99861656-0cd0d200-2b97-11eb-9e85-a431038666f0.png)
 
