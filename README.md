@@ -12,7 +12,7 @@ Features:
 Used technologies:
 - Hibernate
 - Spring Boot
-- Spring Security
+- Spring Security with Taglibs
 - JpaRepository
 - JSP pages
 
