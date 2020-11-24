@@ -15,6 +15,7 @@ Used technologies:
 - Spring Security with Taglibs
 - JpaRepository
 - JSP pages
+- MySQL database
 
 ![opera_2020-11-21_01-10-42](https://user-images.githubusercontent.com/50807860/99861656-0cd0d200-2b97-11eb-9e85-a431038666f0.png)
 
