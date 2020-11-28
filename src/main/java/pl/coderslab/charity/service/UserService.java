@@ -13,4 +13,5 @@ public interface UserService {
     List<User> getAll(String sortType);
     User findByUserName(String username);
     public void userToggleBan(Long id);
+    List<User> findAll();
 }

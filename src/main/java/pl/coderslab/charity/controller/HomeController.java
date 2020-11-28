@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.charity.entity.Institution;
 import pl.coderslab.charity.service.DonationService;
@@ -25,15 +26,23 @@ public class HomeController {
 
     @GetMapping()
     public String showHomepage(Model model) {
-        List<Institution> institutionList = this.institutionService.findAll();
-        model.addAttribute("institutionList", institutionList);
-
-        long numOfGiftedItems = this.donationService.countAllGiftedItems();
-        model.addAttribute("numOfGiftedItems", numOfGiftedItems);
-
-        long numOfDonations = this.donationService.countAllDonations();
-        model.addAttribute("numOfDonations", numOfDonations);
-
         return "index";
+    }
+
+    /* Model attributes */
+
+    @ModelAttribute("institutionList")
+    public List<Institution> institutions() {
+        return this.institutionService.findAll();
+    }
+
+    @ModelAttribute("numOfGiftedItems")
+    public long numOfGiftedItems() {
+        return this.donationService.countAllGiftedItems();
+    }
+
+    @ModelAttribute("numOfDonations")
+    public long numOfDonations() {
+        return this.donationService.countAllDonations();
     }
 }

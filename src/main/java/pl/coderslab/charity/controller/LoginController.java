@@ -35,17 +35,17 @@ public class LoginController {
     public String createNewUser(Model model, @Valid User user, BindingResult bindingResult) {
         User userExists = this.userService.findByUserName(user.getUsername());
         if (userExists != null) {
-            bindingResult.rejectValue("userName", "error.user",
-                    "There is already a user registered with the user name provided");
+            bindingResult.rejectValue("username", "error.user",
+                    "Taki użytkownik już istnieje!");
         }
         if (bindingResult.hasErrors()) {
             return "register";
         } else {
             user.setRegisteredOn(String.valueOf(LocalDateTime.now()));
             this.userService.save(user);
-            model.addAttribute("successMessage", "User has been registered successfully!");
+            model.addAttribute("successMessage", "Konto zostało pomyślnie utworzone!");
             model.addAttribute("user", new User());
-            return "register";
+            return "login";
         }
     }
 

@@ -35,14 +35,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         web
             .ignoring()
-            .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**", "/vendor/**", "/img/**");
+            .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**", "/img/**");
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/admin","/admin/**").hasAuthority("ADMIN")
-                .antMatchers("/donation","/donation/**", "/profile").hasAuthority("USER")
+                .antMatchers("/donation","/donation/**", "/profile").hasAnyAuthority("USER", "ADMIN")
                 .antMatchers("/**").permitAll()
                 .anyRequest()
                 .authenticated().and().csrf().disable().formLogin()
