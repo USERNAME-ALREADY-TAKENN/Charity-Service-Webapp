@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
 
+  let first_run = true;
+
   /**
    * Form Select
    */
@@ -125,8 +127,9 @@ document.addEventListener("DOMContentLoaded", function() {
       this.$next.forEach(btn => {
         btn.addEventListener("click", e => {
           e.preventDefault();
-          this.currentStep++;
-          this.updateForm();
+          if(this.updateForm()) {
+            this.currentStep++;
+          }
         });
       });
 
@@ -134,8 +137,9 @@ document.addEventListener("DOMContentLoaded", function() {
       this.$prev.forEach(btn => {
         btn.addEventListener("click", e => {
           e.preventDefault();
-          this.currentStep--;
-          this.updateForm();
+          if(this.updateForm()) {
+            this.currentStep--;
+          }
         });
       });
 
@@ -150,8 +154,24 @@ document.addEventListener("DOMContentLoaded", function() {
     updateForm() {
       this.$step.innerText = this.currentStep;
 
-      // TODO: Validation
-
+      // Data validation
+      console.log(first_run);
+      if(!first_run) {
+        first_run = true;
+        if (this.currentStep === 1 && document.querySelector('input[type="checkbox"]:checked') == null) {
+          console.log("1");
+          document.querySelector('#categories-errors').innerHTML = "<h3>Musisz zaznaczyć przynajmniej 1 pole!</h3>";
+          first_run = false;
+          return false;
+        }
+        if(this.currentStep === 2 && isNaN(document.querySelector('#quantity').value) || document.querySelector('#quantity').value < 1) {
+          console.log("2");
+          document.querySelector('#quantity-errors').innerHTML = "<h3>Wartość musi być liczbą oraz musi być większa od 0!</h3>";
+          first_run = false;
+          return false;
+        }
+      }
+      console.log("dupa");
       this.slides.forEach(slide => {
         slide.classList.remove("active");
 
@@ -163,7 +183,7 @@ document.addEventListener("DOMContentLoaded", function() {
       this.$stepInstructions[0].parentElement.parentElement.hidden = this.currentStep >= 5;
       this.$step.parentElement.hidden = this.currentStep >= 5;
 
-      // TODO: get data from inputs and show them in summary
+      // get data from inputs and show them in summary
       document.getElementById("quantityFinal").innerText = document.getElementById("quantity").value;
       document.getElementById("streetFinal").innerText = document.getElementById("street").value;
       document.getElementById("zipCodeFinal").innerText = document.getElementById("zipCode").value;
@@ -171,10 +191,14 @@ document.addEventListener("DOMContentLoaded", function() {
       document.getElementById("pickUpDateFinal").innerText = document.getElementById("pickUpDate").value;
       document.getElementById("pickUpTimeFinal").innerText = document.getElementById("pickUpTime").value;
       document.getElementById("pickUpCommentFinal").innerText = document.getElementById("pickUpComment").value;
-      document.getElementById("institutionFinal").innerText = document.querySelector('input[name="institution"]:checked').nextElementSibling.nextElementSibling.children[0].innerText;
+      let checked_institution = document.querySelector('input[name="institution"]:checked');
+      if(checked_institution) {
+        document.getElementById("institutionFinal").innerText = checked_institution.nextElementSibling.nextElementSibling.children[0].innerText;
+      }
       document.getElementById("categoryFinal").innerText = Array.from(document.querySelectorAll('input[name="categories"]:checked')).map(el => {return el.nextElementSibling.nextElementSibling.innerText;}).join(", ")
 
-
+      first_run = false;
+      return true;
     }
 
   }
