@@ -4,7 +4,7 @@
 <jsp:include page="/WEB-INF/fragments/header.jsp" />
 </header>
 
-<section class="login-page">
+<section class="login-page" id="form">
     <h2>Załóż konto</h2>
     <form:form modelAttribute="user" action="/register" method="post" autocomplete="false">
         <div class="form-group">

@@ -45,4 +45,9 @@ public class DonationServiceDb implements DonationService {
     public List<Donation> findAllWithAllData() {
         return this.donationRepository.findAllWithCategories();
     }
+
+    @Override
+    public void remove(Donation donation) {
+        this.donationRepository.delete(donation);
+    }
 }

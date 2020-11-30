@@ -17,8 +17,8 @@
     <nav class="container container--70">
         <ul class="nav--actions">
             <sec:authorize access="!isAuthenticated()">
-                <li><a href="${pageContext.request.contextPath}/login#login" class="btn btn--small btn--without-border">Zaloguj</a></li>
-                <li><a href="${pageContext.request.contextPath}/register#login" class="btn btn--small btn--highlighted">Załóż konto</a></li>
+                <li><a href="${pageContext.request.contextPath}/login#form" class="btn btn--small btn--without-border">Zaloguj</a></li>
+                <li><a href="${pageContext.request.contextPath}/register#form" class="btn btn--small btn--highlighted">Załóż konto</a></li>
             </sec:authorize>
             <sec:authorize access="isAuthenticated()">
                 <li class="logged-user">

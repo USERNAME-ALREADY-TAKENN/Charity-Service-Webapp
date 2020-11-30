@@ -15,6 +15,7 @@
                 <th>Komentarz</th>
                 <th>Instytucja</th>
                 <th>Darczyńca</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -32,6 +33,7 @@
                     <td>${donation.pickUpComment}</td>
                     <td>${donation.institution.name}</td>
                     <td>${donation.user.username}</td>
+                    <td><a href="/donation/delete/${donation.id}">Usuń</a></td>
                 </tr>
             </c:forEach>
         </tbody>

@@ -1,14 +1,12 @@
 package pl.coderslab.charity.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import pl.coderslab.charity.entity.Category;
 import pl.coderslab.charity.entity.Donation;
 import pl.coderslab.charity.entity.Institution;
@@ -49,6 +47,16 @@ public class DonationController {
         donation.setUser(currentUser.getUser());
         this.donationService.save(donation);
         return "donation/saved";
+    }
+
+    @Secured("ADMIN")
+    @GetMapping("/delete/{id}")
+    public String removeDonation(@PathVariable Long id, Model model) {
+        Donation donation = this.donationService.findByIdWithAllData(id);
+        if(donation != null) {
+            this.donationService.remove(donation);
+        }
+        return "redirect:/admin";
     }
 
     /* Model attributes */
