@@ -875,7 +875,7 @@ header.header--form-page {
 
 /* line 23, scss/modules/_header.scss */
 header .slogan {
-  height: calc(100% - 141px);
+  height: 80vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
