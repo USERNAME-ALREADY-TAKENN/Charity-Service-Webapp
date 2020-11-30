@@ -11,4 +11,5 @@ public interface DonationService {
     Donation findByIdWithAllData(long id);
     List<Donation> findAll();
     List<Donation> findAllWithAllData();
+    void remove(Donation donation);
 }
