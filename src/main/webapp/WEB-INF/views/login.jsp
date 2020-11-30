@@ -16,13 +16,16 @@
         </div>
 
         <div class="form-group form-group--buttons">
-            <a href="${pageContext.request.contextPath}/register" class="btn btn--without-border">Załóż konto</a>
             <button class="btn" type="submit">Zaloguj się</button>
+            <a href="${pageContext.request.contextPath}/register" class="btn btn--without-border">Załóż konto</a>
         </div>
         <c:if test="${param.error}">
             <div align="center">
-                <p>Nieprawidłowe dane</p>
+                <h2>Nieprawidłowe dane</h2>
             </div>
+        </c:if>
+        <c:if test="${not empty successMessage}">
+            <h2>${successMessage}</h2>
         </c:if>
     </form>
 </section>

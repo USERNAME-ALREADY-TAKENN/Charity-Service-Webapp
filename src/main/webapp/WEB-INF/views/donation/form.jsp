@@ -69,7 +69,7 @@
                         </label>
                     </div>
                 </c:forEach>
-
+                <div id="categories-errors"></div>
                 <div class="form-group form-group--buttons">
                     <button type="button" class="btn next-step">Dalej</button>
                 </div>
@@ -86,6 +86,8 @@
                     </label>
                 </div>
 
+                <div id="quantity-errors"></div>
+
                 <div class="form-group form-group--buttons">
                     <button type="button" class="btn prev-step">Wstecz</button>
                     <button type="button" class="btn next-step">Dalej</button>
@@ -100,7 +102,6 @@
                     <div class="form-group form-group--checkbox">
                         <label>
                             <form:radiobutton path="institution" value="${institutionEl.id}" />
-<%--                            <input type="radio" name="organization" value="old">--%>
                             <span class="checkbox radio"></span>
                             <span class="description">
                               <div class="title">Fundacja "${institutionEl.name}"</div>
@@ -111,6 +112,8 @@
                         </label>
                     </div>
                 </c:forEach>
+
+                <div id="institutions-errors"></div>
 
                 <div class="form-group form-group--buttons">
                     <button type="button" class="btn prev-step">Wstecz</button>
@@ -167,6 +170,9 @@
                         </div>
                     </div>
                 </div>
+
+                <div id="address-errors"></div>
+
                 <div class="form-group form-group--buttons">
                     <button type="button" class="btn prev-step">Wstecz</button>
                     <button type="button" class="btn next-step">Dalej</button>

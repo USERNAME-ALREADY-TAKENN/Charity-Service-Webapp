@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
 
+  let first_run = true;
+
   /**
    * Form Select
    */
@@ -125,8 +127,7 @@ document.addEventListener("DOMContentLoaded", function() {
       this.$next.forEach(btn => {
         btn.addEventListener("click", e => {
           e.preventDefault();
-          this.currentStep++;
-          this.updateForm();
+          this.updateForm("next");
         });
       });
 
@@ -134,8 +135,7 @@ document.addEventListener("DOMContentLoaded", function() {
       this.$prev.forEach(btn => {
         btn.addEventListener("click", e => {
           e.preventDefault();
-          this.currentStep--;
-          this.updateForm();
+          this.updateForm("back");
         });
       });
 
@@ -147,34 +147,78 @@ document.addEventListener("DOMContentLoaded", function() {
      * Update form front-end
      * Show next or previous section etc.
      */
-    updateForm() {
-      this.$step.innerText = this.currentStep;
+    updateForm(moveToNext) {
 
-      // TODO: Validation
+      // Data validation
+      if(!first_run && moveToNext === "next") {
+        first_run = true;
+        if (this.currentStep === 1 && document.querySelector('input[type="checkbox"]:checked') == null) {
+          document.querySelector('#categories-errors').innerHTML = "<h3>Musisz zaznaczyć przynajmniej 1 pole!</h3>";
+          first_run = false;
+          return;
+        }
+        if(this.currentStep === 2 && (isNaN(document.querySelector('#quantity').value) || document.querySelector('#quantity').value < 1) ) {
+          document.querySelector('#quantity-errors').innerHTML = "<h3>Wartość musi być liczbą oraz musi być większa od 0!</h3>";
+          first_run = false;
+          return;
+        }
+        if(this.currentStep === 3 && document.querySelector('input[type="radio"]:checked') == null) {
+          document.querySelector('#institutions-errors').innerHTML = "<h3>Musisz wybrać instytucję!</h3>";
+          first_run = false;
+          return;
+        }
+        if(this.currentStep === 4 && (
+            document.querySelector('#street').value.length === 0 ||
+            document.querySelector('#city').value.length === 0 ||
+            document.querySelector('#zipCode').value.length === 0 ||
+            document.querySelector('#pickUpDate').value.length === 0 ||
+            document.querySelector('#pickUpTime').value.length === 0
+        )) {
+          document.querySelector('#address-errors').innerHTML = "<h3>Musisz podać adres oraz czas odbioru!</h3>";
+          first_run = false;
+          return;
+        }
+      }
+      if(moveToNext === "next") this.currentStep++;
+      else if(moveToNext === "back") this.currentStep--;
+
+      this.$step.innerText = this.currentStep;
 
       this.slides.forEach(slide => {
         slide.classList.remove("active");
 
         if (slide.dataset.step == this.currentStep) {
           slide.classList.add("active");
+          first_run = true;
         }
       });
 
       this.$stepInstructions[0].parentElement.parentElement.hidden = this.currentStep >= 5;
       this.$step.parentElement.hidden = this.currentStep >= 5;
 
-      // TODO: get data from inputs and show them in summary
-      document.getElementById("quantityFinal").innerText = document.getElementById("quantity").value;
-      document.getElementById("streetFinal").innerText = document.getElementById("street").value;
-      document.getElementById("zipCodeFinal").innerText = document.getElementById("zipCode").value;
-      document.getElementById("cityFinal").innerText = document.getElementById("city").value;
-      document.getElementById("pickUpDateFinal").innerText = document.getElementById("pickUpDate").value;
-      document.getElementById("pickUpTimeFinal").innerText = document.getElementById("pickUpTime").value;
-      document.getElementById("pickUpCommentFinal").innerText = document.getElementById("pickUpComment").value;
-      document.getElementById("institutionFinal").innerText = document.querySelector('input[name="institution"]:checked').nextElementSibling.nextElementSibling.children[0].innerText;
-      document.getElementById("categoryFinal").innerText = Array.from(document.querySelectorAll('input[name="categories"]:checked')).map(el => {return el.nextElementSibling.nextElementSibling.innerText;}).join(", ")
+      // get data from inputs and show them in summary
+      if(this.currentStep === 5) {
+        document.getElementById("quantityFinal").innerText = document.getElementById("quantity").value;
+        document.getElementById("streetFinal").innerText = document.getElementById("street").value;
+        document.getElementById("zipCodeFinal").innerText = document.getElementById("zipCode").value;
+        document.getElementById("cityFinal").innerText = document.getElementById("city").value;
+        document.getElementById("pickUpDateFinal").innerText = document.getElementById("pickUpDate").value;
+        document.getElementById("pickUpTimeFinal").innerText = document.getElementById("pickUpTime").value;
 
+        let pickUpComment = document.getElementById("pickUpComment").value;
+        if(pickUpComment.length === 0) {
+          pickUpComment = "Brak komentarza";
+        }
+        document.getElementById("pickUpCommentFinal").innerText = pickUpComment;
 
+        let checked_institution = document.querySelector('input[name="institution"]:checked');
+        if(checked_institution) {
+          document.getElementById("institutionFinal").innerText = checked_institution.nextElementSibling.nextElementSibling.children[0].innerText;
+        }
+        document.getElementById("categoryFinal").innerText = Array.from(document.querySelectorAll('input[name="categories"]:checked')).map(el => {return el.nextElementSibling.nextElementSibling.innerText;}).join(", ")
+      }
+
+      first_run = false;
     }
 
   }

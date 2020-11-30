@@ -24,8 +24,11 @@
                 <li class="logged-user">
                     Witaj <sec:authentication property="name"/>
                     <ul class="dropdown">
-                        <li><a href="#">Profil</a></li>
-                        <li><a href="#">Moje zbiórki</a></li>
+                        <li><a href="${pageContext.request.contextPath}/profile">Profil</a></li>
+                        <li><a href="${pageContext.request.contextPath}/donation/list">Moje zbiórki</a></li>
+                        <sec:authorize access="hasAuthority('ADMIN')">
+                            <li><a href="${pageContext.request.contextPath}/admin">Panel administratora</a></li>
+                        </sec:authorize>
                         <li><a href="${pageContext.request.contextPath}/logout">Wyloguj</a></li>
                     </ul>
                 </li>
@@ -33,11 +36,11 @@
         </ul>
 
         <ul>
-            <li><a href="/" class="btn btn--without-border active">Start</a></li>
-            <li><a href="/#steps" class="btn btn--without-border">O co chodzi?</a></li>
-            <li><a href="/#about-us" class="btn btn--without-border">O nas</a></li>
-            <li><a href="/#help" class="btn btn--without-border">Fundacje i organizacje</a></li>
+            <li><a href="${pageContext.request.contextPath}/" class="btn btn--without-border active">Start</a></li>
+            <li><a href="${pageContext.request.contextPath}/#steps" class="btn btn--without-border">O co chodzi?</a></li>
+            <li><a href="${pageContext.request.contextPath}/#about-us" class="btn btn--without-border">O nas</a></li>
+            <li><a href="${pageContext.request.contextPath}/#help" class="btn btn--without-border">Fundacje i organizacje</a></li>
             <li><a href="${pageContext.request.contextPath}/donation/add" class="btn btn--without-border">Przekaż dary</a></li>
-            <li><a href="/#contact" class="btn btn--without-border">Kontakt</a></li>
+            <li><a href="${pageContext.request.contextPath}/#contact" class="btn btn--without-border">Kontakt</a></li>
         </ul>
     </nav>

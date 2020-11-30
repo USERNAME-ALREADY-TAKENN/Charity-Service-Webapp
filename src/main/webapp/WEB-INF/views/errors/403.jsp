@@ -5,8 +5,8 @@
 <div class="slogan container container--90">
     <div class="slogan--item">
         <h1>
-            Nie znaleziono strony!<br>
-            404
+            Brak dostępu!<br>
+            403
         </h1>
     </div>
 </div>

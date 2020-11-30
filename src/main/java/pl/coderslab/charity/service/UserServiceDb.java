@@ -31,7 +31,7 @@ public class UserServiceDb implements UserService {
     public User save(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setEnabled(true);
-        Role userRole = roleRepository.findByName("ROLE_USER");
+        Role userRole = roleRepository.findByName("USER");
         user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
         return this.userRepository.save(user);
     }
@@ -101,5 +101,10 @@ public class UserServiceDb implements UserService {
             Boolean newState = !user.getEnabled();
             this.userRepository.updateEnabled(newState, user.getId());
         }
+    }
+
+    @Override
+    public List<User> findAll() {
+        return this.userRepository.findAll();
     }
 }

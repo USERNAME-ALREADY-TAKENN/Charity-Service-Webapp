@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import pl.coderslab.charity.entity.Donation;
 import pl.coderslab.charity.repository.DonationRepository;
 
+import java.util.List;
+
 @Service
 public class DonationServiceDb implements DonationService {
     private DonationRepository donationRepository;
@@ -32,5 +34,15 @@ public class DonationServiceDb implements DonationService {
     @Override
     public Donation findByIdWithAllData(long id) {
         return this.donationRepository.findByIdWithCategories(id);
+    }
+
+    @Override
+    public List<Donation> findAll() {
+        return this.donationRepository.findAll();
+    }
+
+    @Override
+    public List<Donation> findAllWithAllData() {
+        return this.donationRepository.findAllWithCategories();
     }
 }

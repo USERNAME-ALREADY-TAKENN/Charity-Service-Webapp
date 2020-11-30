@@ -6,7 +6,7 @@
 
 <section class="login-page">
     <h2>Załóż konto</h2>
-    <form:form modelAttribute="user" action="/register" method="post">
+    <form:form modelAttribute="user" action="/register" method="post" autocomplete="false">
         <div class="form-group">
             <form:input path="username" placeholder="Name" />
             <form:errors path="username" />
@@ -24,8 +24,8 @@
         </div>
 
         <div class="form-group form-group--buttons">
-            <a href="${pageContext.request.contextPath}/login" class="btn btn--without-border">Zaloguj się</a>
             <button class="btn" type="submit">Załóż konto</button>
+            <a href="${pageContext.request.contextPath}/login" class="btn btn--without-border">Zaloguj się</a>
         </div>
     </form:form>
 </section>
