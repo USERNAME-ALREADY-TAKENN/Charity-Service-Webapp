@@ -8,6 +8,7 @@ Features:
 - registering accounts
 - adding planned donations
 - manging users and donations
+- basic JS and Lombok validation
 
 Used technologies:
 - Hibernate
