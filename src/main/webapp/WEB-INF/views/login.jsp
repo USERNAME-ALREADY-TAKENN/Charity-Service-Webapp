@@ -5,7 +5,7 @@
 <jsp:include page="/WEB-INF/fragments/header.jsp" />
 </header>
 
-<section class="login-page" id="login">
+<section class="login-page" id="form">
     <h2>Zaloguj się</h2>
     <form action="${pageContext.request.contextPath}/login" method="post">
         <div class="form-group">
